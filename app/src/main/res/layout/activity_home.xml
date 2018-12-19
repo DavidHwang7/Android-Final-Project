@@ -8,11 +8,12 @@
 
     <ImageButton
         android:id="@+id/info_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:background="@drawable/info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:color/transparent"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="231dp" />
+        tools:layout_editor_absoluteX="130dp" />
 
 </android.support.constraint.ConstraintLayout>
