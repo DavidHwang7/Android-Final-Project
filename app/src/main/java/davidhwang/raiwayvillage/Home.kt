@@ -8,7 +8,7 @@ class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val actionBar = supportActionBar
 //ActionBar actionBar = getActionBar();
-        actionBar!!.hide()
+        actionBar!!.hide()//#303F9FDark  //#3F51B5Primary
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
     }
