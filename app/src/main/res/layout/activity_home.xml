@@ -7,43 +7,58 @@
     tools:context=".Home">
 
     <ImageView
-        android:layout_width="320dp"
-        android:layout_height="230dp"
-        app:srcCompat="@drawable/cover"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="102dp" />
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="68dp"
+        android:layout_marginTop="86dp"
+        app:layout_constraintBottom_toBottomOf="@+id/history_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/intro_button"
+        app:srcCompat="@drawable/cover" />
 
     <ImageButton
         android:id="@+id/info_button"
-        android:layout_width="103dp"
+        android:layout_width="0dp"
         android:layout_height="110dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="71dp"
+        android:layout_marginStart="27dp"
         android:background="@drawable/info"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/history_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.855"
-        app:srcCompat="@android:color/transparent"
-        tools:layout_editor_absoluteX="27dp" />
+        app:srcCompat="@android:color/transparent" />
 
     <ImageButton
         android:id="@+id/history_button"
-        android:layout_width="103dp"
+        android:layout_width="0dp"
         android:layout_height="105dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:background="@drawable/history"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/info_button"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.842"
-        app:srcCompat="@android:color/transparent"
-        tools:layout_editor_absoluteX="201dp" />
+        app:srcCompat="@android:color/transparent" />
 
     <ImageButton
         android:id="@+id/intro_button"
         android:layout_width="105dp"
         android:layout_height="105dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
         android:background="@drawable/intro"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046"
-        app:srcCompat="@android:color/transparent"
-        tools:layout_editor_absoluteX="188dp" />
+        app:srcCompat="@android:color/transparent" />
 
 </android.support.constraint.ConstraintLayout>
