@@ -7,23 +7,43 @@
     tools:context=".Home">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="230dp"
         app:srcCompat="@drawable/cover"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="102dp" />
 
     <ImageButton
         android:id="@+id/info_button"
-        android:layout_width="100dp"
+        android:layout_width="103dp"
         android:layout_height="110dp"
         android:background="@drawable/info"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.855"
         app:srcCompat="@android:color/transparent"
-        tools:layout_editor_absoluteX="130dp" />
+        tools:layout_editor_absoluteX="27dp" />
+
+    <ImageButton
+        android:id="@+id/history_button"
+        android:layout_width="103dp"
+        android:layout_height="105dp"
+        android:background="@drawable/history"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.842"
+        app:srcCompat="@android:color/transparent"
+        tools:layout_editor_absoluteX="201dp" />
+
+    <ImageButton
+        android:id="@+id/intro_button"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
+        android:background="@drawable/intro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046"
+        app:srcCompat="@android:color/transparent"
+        tools:layout_editor_absoluteX="188dp" />
 
 </android.support.constraint.ConstraintLayout>
