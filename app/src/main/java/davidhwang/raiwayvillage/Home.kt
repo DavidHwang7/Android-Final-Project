@@ -13,6 +13,6 @@ class Home : AppCompatActivity() {
 //ActionBar actionBar = getActionBar();
         actionBar!!.hide()//#303F9FDark  //#3F51B5Primary
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_home_fhd)
     }
 }
