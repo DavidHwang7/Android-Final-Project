@@ -92,7 +92,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/frame_button"
+        android:background="@drawable/camera_button"
         app:layout_constraintBottom_toBottomOf="@+id/intro_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.039"
