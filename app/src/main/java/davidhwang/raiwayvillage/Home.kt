@@ -5,7 +5,7 @@ import android.os.Bundle
 
 class Home : AppCompatActivity() {
 
-
+	//Hello
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val actionBar = supportActionBar
