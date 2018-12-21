@@ -12,7 +12,7 @@ class History : AppCompatActivity() {
         setContentView(R.layout.activity_history)
         val home: ImageButton = findViewById(R.id.back_history)
         home.setOnTouchListener(ButtonTouchDark())
-        home.setOnClickListener(android.view.View.OnClickListener() { accessHome() })
+        home.setOnClickListener(android.view.View.OnClickListener() { accessHome()})
     }
 
     private fun accessHome(){
