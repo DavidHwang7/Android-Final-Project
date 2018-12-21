@@ -1,8 +1,10 @@
 package davidhwang.raiwayvillage
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import davidhwang.raiwayvillage.R.styleable.View
 
 class Home : AppCompatActivity() {
 
@@ -22,7 +24,14 @@ class Home : AppCompatActivity() {
         intro_button.setOnTouchListener(ButtonTouchDark())
         info_button.setOnTouchListener(ButtonTouchDark())
         history_button.setOnTouchListener(ButtonTouchLight())
+        history_button.setOnClickListener(android.view.View.OnClickListener() { accessHistory() })
 
+    }
 
+    private fun accessHistory(){
+        val intent = Intent()
+        intent.setClass(this,
+                History::class.java)
+        startActivity(intent)
     }
 }
