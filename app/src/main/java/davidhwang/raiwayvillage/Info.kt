@@ -21,6 +21,8 @@ class Info : AppCompatActivity() {
         val btn_call: TextView = findViewById(R.id.btn_call)
         val btn_map: TextView = findViewById(R.id.btn_map)
         Linkify.addLinks(btn_call, Linkify.PHONE_NUMBERS)
+
+        home.setOnTouchListener(ButtonTouchDark())
         home.setOnClickListener { accessHome()}
 
         btn_call.setOnClickListener {
