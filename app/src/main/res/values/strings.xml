@@ -9,4 +9,15 @@
         新竹市政府90年擇定臺鐵3-5號倉庫成立「新竹市鐵道藝術村」，歷經數度整修於93年開館，初期發展在地產業；
         自104年登錄為歷史建築，顯示其重要性。\n\n至今，藝術村不僅深入地方文化，融入創作、推廣美學等工作，
         以青年藝術、親子為客群，建立與民間共構的協力模式，持續培育駐村藝術家，成為推廣鐵道及新形態藝術的實驗據點。</string>
+    <string name="title_info">參觀資訊</string>
+    <string name="time_info">營業時間</string>
+    <string name="time">10:00 ~ 19:00 (週一休館)</string>
+    <string name="phone_info">連絡電話</string>
+    <string name="phone"><u>(03)562-8933</u></string>
+    <string name="addr_info">地址</string>
+    <string name="addr"><u>新竹市花園街64號</u></string>
+    <string name="trans_info">公共運輸</string>
+    <string name="trans">【火車】\n新竹火車站>後站5號出口>沿著東大路一段、花園街步行10分鐘即可到達。\n
+        【大客車】\n可停於南大路140巷與東大路一段之間的大客車停車場，沿南大路140巷直走到底右轉接東大路一段、花園街步行5分鐘即可到達。\n
+        【自小客車】\n請將車輛停放於東大高架陸橋下停車場或轉運站附近停車場。</string>
 </resources>

@@ -24,7 +24,9 @@ class Home : AppCompatActivity() {
         intro_button.setOnTouchListener(ButtonTouchDark())
         info_button.setOnTouchListener(ButtonTouchDark())
         history_button.setOnTouchListener(ButtonTouchLight())
-        history_button.setOnClickListener(android.view.View.OnClickListener() { accessHistory() })
+
+        info_button.setOnClickListener { accessInfo() }
+        history_button.setOnClickListener { accessHistory() }
 
     }
 
@@ -32,6 +34,13 @@ class Home : AppCompatActivity() {
         val intent = Intent()
         intent.setClass(this,
                 History::class.java)
+        startActivity(intent)
+    }
+
+    private fun accessInfo(){
+        val intent = Intent()
+        intent.setClass(this,
+                Info::class.java)
         startActivity(intent)
     }
 }

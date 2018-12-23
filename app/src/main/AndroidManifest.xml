@@ -11,13 +11,24 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Home">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".History"
-            android:theme="@style/AppTheme.NoActionBar"
-            ></activity>
+
+        <activity
+            android:name=".History"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Info"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.APP_MAPS" />
+                <category android:name="android.intent.cateory.APP_CONTACTS" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
