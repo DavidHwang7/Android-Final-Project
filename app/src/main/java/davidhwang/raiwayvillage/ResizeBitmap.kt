@@ -42,7 +42,7 @@ public fun getResizedBitmap(imagePath: String): Bitmap {
 }
 
 public fun getResizedBitmapFromDrawable(resID: Int, context: Context): Bitmap {
-    var MAX_WIDTH = 1024 // 新圖的寬要小於等於這個值
+    val MAX_WIDTH = 1080 // 新圖的寬要小於等於這個值
 
     val options = BitmapFactory.Options()
     options.inJustDecodeBounds = true //只讀取寬度和高度
@@ -50,7 +50,7 @@ public fun getResizedBitmapFromDrawable(resID: Int, context: Context): Bitmap {
     var width = options.outWidth
     var height = options.outHeight
 
-    Log.i("resize", "壓縮前圖片大小" + "寬度:" + width + " 高度:" + height)
+    Log.i("resize", "壓縮前圖片大小 " + "寬度:" + width + " 高度:" + height)
 
     // 求出要縮小的 scale 值，必需是2的次方，ex: 1,2,4,8,16...
     var scale = 1
@@ -63,11 +63,14 @@ public fun getResizedBitmapFromDrawable(resID: Int, context: Context): Bitmap {
 
     // 使用 scale 值產生縮小的圖檔
     val scaledOptions = BitmapFactory.Options()
+    scaledOptions.inScaled=true
+    //Log.i("resize", "Density " + "inTargetDensity:" + scaledOptions.inTargetDensity + " inDensity:" + scaledOptions.inDensity)
+    scaledOptions.inTargetDensity=160
+    scaledOptions.inDensity=160
     scaledOptions.inSampleSize = scale
     val scaledBitmap =BitmapFactory.decodeResource(context.getResources(),resID,scaledOptions)
-    Log.i("resize", "壓縮後圖片大小1" + "寬度:" + scaledBitmap.width + " 高度:" + scaledBitmap.height)
+    Log.i("resize", "壓縮後圖片大小1 " + "寬度:" + scaledBitmap.width + " 高度:" + scaledBitmap.height)
 
-    MAX_WIDTH=1500
     var resize = 1f //縮小值 resize 可為任意小數
     if (scaledBitmap.width > MAX_WIDTH) {
         resize = MAX_WIDTH.toFloat() / scaledBitmap.width
@@ -79,7 +82,7 @@ public fun getResizedBitmapFromDrawable(resID: Int, context: Context): Bitmap {
 
     // 產生縮小後的圖
     val ResizeBitmap=Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.width, scaledBitmap.height, matrix, true)
-    Log.i("resize", "壓縮後圖片大小2" + "寬度:" + ResizeBitmap.width + " 高度:" + ResizeBitmap.height)
+    Log.i("resize", "壓縮後圖片大小2 " + "寬度:" + ResizeBitmap.width + " 高度:" + ResizeBitmap.height)
     return ResizeBitmap
 
 }

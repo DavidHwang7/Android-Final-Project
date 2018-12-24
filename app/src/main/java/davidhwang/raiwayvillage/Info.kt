@@ -1,6 +1,7 @@
 package davidhwang.raiwayvillage
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
@@ -8,14 +9,22 @@ import android.os.Bundle
 import android.text.util.Linkify
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import org.w3c.dom.Text
 
 class Info : AppCompatActivity() {
 
+    lateinit var bmp: Bitmap
+    lateinit var InfoImage: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info)
+
+        bmp= getResizedBitmapFromDrawable(R.drawable.info0,this)
+        InfoImage=findViewById(R.id.info_image)
+        InfoImage.setImageBitmap(bmp)
 
         val home: ImageButton = findViewById(R.id.back_info)
         val btn_call: TextView = findViewById(R.id.btn_call)
@@ -36,6 +45,13 @@ class Info : AppCompatActivity() {
 
     }
 
+    override fun onStop(){
+        super.onStop()
+        bmp.recycle()
+        InfoImage.setImageDrawable(null)
+        InfoImage.setImageBitmap(null)
+    }
+
     override fun onRestart() {
         super.onRestart()
         var btn: TextView = findViewById(R.id.btn_call)
@@ -43,6 +59,9 @@ class Info : AppCompatActivity() {
 
         btn=findViewById(R.id.btn_map)
         btn.setTextColor(Color.BLUE)
+
+        bmp= getResizedBitmapFromDrawable(R.drawable.info0,this)
+        InfoImage.setImageBitmap(bmp)
     }
 
     private fun accessHome(){

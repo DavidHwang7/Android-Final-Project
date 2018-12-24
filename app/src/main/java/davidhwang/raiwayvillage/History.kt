@@ -30,8 +30,8 @@ class History : AppCompatActivity() {
         home.setOnClickListener(android.view.View.OnClickListener() { accessHome()})
     }
 
-    override fun onPause(){
-        super.onPause()
+    override fun onStop(){
+        super.onStop()
         bmp.recycle()
         historyImage.setImageDrawable(null)
         historyImage.setImageBitmap(null)

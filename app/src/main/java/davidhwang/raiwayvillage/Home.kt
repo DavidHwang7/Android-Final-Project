@@ -10,10 +10,14 @@ class Home : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val actionBar = supportActionBar
-//ActionBar actionBar = getActionBar();
         actionBar!!.hide() //#303F9FDark  //#3F51B5Primary
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_qvga)
+        val mWidth = resources.displayMetrics.widthPixels //手機的寬度(像素)
+        val mHeight = resources.displayMetrics.heightPixels //手機的高度(像素)
+        if(mWidth<=320&&mHeight<=480)
+            setContentView(R.layout.activity_home_qvga)
+        else
+            setContentView(R.layout.activity_home_fhd)
 
         val intro_button: ImageButton = findViewById(R.id.intro_button)
         val camera_button: ImageButton = findViewById(R.id.camera_button)
