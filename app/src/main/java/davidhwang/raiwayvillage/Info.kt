@@ -80,7 +80,7 @@ class Info : AppCompatActivity() {
     }
 
     private fun openMap() {
-        val uri: Uri = Uri.parse("geo:24.8041358,120.9769182")
+        val uri: Uri = Uri.parse("geo:24.8041358,120.9769182?q=新竹鐵道藝術村")
         val intent: Intent = Intent()
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(uri);
