@@ -29,7 +29,11 @@ class Info : AppCompatActivity() {
         val home: ImageButton = findViewById(R.id.back_info)
         val btn_call: TextView = findViewById(R.id.btn_call)
         val btn_map: TextView = findViewById(R.id.btn_map)
+        val btn_web: TextView = findViewById(R.id.btn_web)
+
         Linkify.addLinks(btn_call, Linkify.PHONE_NUMBERS)
+        Linkify.addLinks(btn_map, Linkify.MAP_ADDRESSES)
+        Linkify.addLinks(btn_web, Linkify.WEB_URLS)
 
         home.setOnTouchListener(ButtonTouchDark())
         home.setOnClickListener { accessHome()}
@@ -43,6 +47,9 @@ class Info : AppCompatActivity() {
             btn_map.setTextColor(Color.RED)
             openMap()}
 
+        btn_web.setOnClickListener {
+            btn_web.setTextColor(Color.RED)
+            openWeb()}
     }
 
     override fun onStop(){
@@ -58,6 +65,9 @@ class Info : AppCompatActivity() {
         btn.setTextColor(Color.BLUE)
 
         btn=findViewById(R.id.btn_map)
+        btn.setTextColor(Color.BLUE)
+
+        btn=findViewById(R.id.btn_web)
         btn.setTextColor(Color.BLUE)
 
         bmp= getResizedBitmapFromDrawable(R.drawable.info0,this)
@@ -81,6 +91,14 @@ class Info : AppCompatActivity() {
 
     private fun openMap() {
         val uri: Uri = Uri.parse("geo:24.8041358,120.9769182?q=新竹鐵道藝術村")
+        val intent: Intent = Intent()
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(uri);
+        startActivity(intent);
+    }
+
+    private fun openWeb() {
+        val uri: Uri = Uri.parse("https://culture.hccg.gov.tw/ch/home.jsp?id=153&parentpath=0,145")
         val intent: Intent = Intent()
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(uri);
