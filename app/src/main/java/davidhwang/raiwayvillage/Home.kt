@@ -31,6 +31,7 @@ class Home : AppCompatActivity() {
 
         info_button.setOnClickListener { accessInfo() }
         history_button.setOnClickListener { accessHistory() }
+        intro_button.setOnClickListener { accessEnv() }
 
     }
 
@@ -45,6 +46,13 @@ class Home : AppCompatActivity() {
         val intent = Intent()
         intent.setClass(this,
                 Info::class.java)
+        startActivity(intent)
+    }
+
+    private fun accessEnv(){
+        val intent = Intent()
+        intent.setClass(this,
+                Environment::class.java)
         startActivity(intent)
     }
 }
