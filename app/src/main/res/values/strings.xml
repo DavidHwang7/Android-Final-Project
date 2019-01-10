@@ -25,4 +25,18 @@
     <string name="title_env">館內介紹</string>
     <string name="opening_env">探索鐵道藝術村</string>
     <string name="select_region_dialog_title">選擇您想探索的目的地</string>
+    <string name="title_intro">機構簡介</string>
+    <string name="body_intro">「新竹市鐵道藝術村」室內可供使用面積約400坪左右，
+        規劃為：駐村工作室、主展場、追火車月台、多功能教室，以及鐵道小賣店</string>
+    <string name="input_error">您未選擇目的地</string>
+    <string name="title_env0">駐村工作室</string>
+    <string name="title_env1">主展場</string>
+    <string name="title_env2">追火車月台</string>
+    <string name="title_env3">多功能教室</string>
+    <string name="title_env4">鐵道小賣店</string>
+    <string name="body_env0">爲爲促進在地藝術茁壯及善用鐵道藝術的空間，鼓勵藝術創作，
+        每年公開遴選駐村藝術家，提供藝術家創思空間，讓天馬行空的想像無限延伸。
+        將藝術創作傳習出去，讓文化藝術能夠推廣且傳之久遠。
+        創作個人工作室為藝術交流之開放空間，
+        藉由藝術家進駐於村內不僅可拉近藝術家和民眾之間的距離並致力於提供大眾更多接觸本土及國際文化的機會。</string>
 </resources>
