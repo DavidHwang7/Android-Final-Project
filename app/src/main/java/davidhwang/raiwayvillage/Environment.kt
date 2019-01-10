@@ -8,6 +8,9 @@ import android.widget.ImageButton
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.AdapterView
+import android.widget.Toast
+
+
 
 
 
@@ -32,25 +35,70 @@ class Environment : AppCompatActivity() {
                 R.layout.spinner_item) //自訂getView()介面格式(Spinner介面未展開時的View)
 
         arrAdapSpn.setDropDownViewResource(R.layout.spinner_dropdown_item) //自訂getDropDownView()介面格式(Spinner介面展開時，View所使用的每個item格式)
-        mSpn.setAdapter(arrAdapSpn) //將宣告好的 Adapter 設定給 Spinner
-       // mSpn.setOnItemSelectedListener(spnOnItemSelected)
+        mSpn.adapter = arrAdapSpn //將宣告好的 Adapter 設定給 Spinner
+
+        mSpn.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(position==0){
+                    access_0()
+                }else if(position==1){
+                    access_1()
+                }else if(position==2){
+                    access_2()
+                }else if(position==3){
+                    access_3()
+                }else if(position==4){
+                    access_4()
+                }
+            }
+
+        }
 
     }
 
-    private val spnRegionOnItemSelected = object : AdapterView.OnItemSelectedListener {
-        override fun onItemSelected(parent: AdapterView<*>, v: View, position: Int, id: Long) {
-            // TODO Auto-generated method stub
-        }
-
-        override fun onNothingSelected(arg0: AdapterView<*>) {
-            // TODO Auto-generated method stub
-        }
-    }
 
     private fun accessHome(){
         val intent = Intent()
         intent.setClass(this,
                 Home::class.java)
+        startActivity(intent)
+    }
+
+    private fun access_0(){
+        val intent = Intent()
+        intent.setClass(this,
+                env0::class.java)
+        startActivity(intent)
+    }
+
+    private fun access_1(){
+        val intent = Intent()
+        intent.setClass(this,
+                env1::class.java)
+        startActivity(intent)
+    }
+
+    private fun access_2(){
+        val intent = Intent()
+        intent.setClass(this,
+                env2::class.java)
+        startActivity(intent)
+    }
+
+    private fun access_3(){
+        val intent = Intent()
+        intent.setClass(this,
+                env3::class.java)
+        startActivity(intent)
+    }
+
+    private fun access_4(){
+        val intent = Intent()
+        intent.setClass(this,
+                env4::class.java)
         startActivity(intent)
     }
 }

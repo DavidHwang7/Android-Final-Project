@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="env">
+        <item>駐村工作室</item>
+        <item>主展場</item>
+        <item>追火車月台</item>
+        <item>多功能教室</item>
+        <item>鐵道小賣店</item>
+    </array>
+</resources>

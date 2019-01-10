@@ -37,7 +37,12 @@
         <activity
             android:name=".Environment"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".env0" />
+        <activity android:name=".env1" />
+        <activity android:name=".env2" />
+        <activity android:name=".env3" />
+        <activity android:name=".env4"></activity>
     </application>
 
 </manifest>
