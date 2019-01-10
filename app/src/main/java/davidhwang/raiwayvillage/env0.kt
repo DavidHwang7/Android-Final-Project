@@ -2,7 +2,7 @@ package davidhwang.raiwayvillage
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import davidhwang.raiwayvillage.R.id.toolbar
+
 
 class env0 : AppCompatActivity() {
 
