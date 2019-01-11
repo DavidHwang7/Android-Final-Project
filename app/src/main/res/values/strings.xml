@@ -47,6 +47,17 @@
         申請方式：公開徵選\n
         審查機制：由評審團審查、評選\n
         藝術家回饋方案：自提計畫\n
-        藝術家展演：每年一次「藝事節」\n
-    </string>
+        藝術家展演：每年舉辦一次「藝事節」</string>
+    <string name="body_env1">每年舉辦各大主題活動、藝文展覽的主要場域，
+        彈性的展牆與寬敞的展覽場域，
+        適宜多元的藝術表現形式，囊括視覺藝術、表演藝術、空間藝術等類型。</string>
+    <string name="subtitle_env1">2018藝事節\n</string>
+    <string name="body2_env1">第15屆駐村藝術家將透過本年度的藝術創作，
+        傳達創作者的對環境、人群、社會、自我內心的探索與觀點，
+        運用平面、立體、影音的方式，呈現藝術創意。</string>
+    <string name="subtitle2_env1">展覽現場</string>
+    <string name="body_env2">為本市唯一能近距離欣賞火車行進的空間，能貼近火車隆隆富節奏的聲響，成為來訪朋友最喜愛的地點。</string>
+    <string name="subtitle2_emv2">鐵道風光</string>
+    <string name="body2_emv2">追火車月台位於鐵道藝術村後方的室外場所，
+        雖然是一個不大的空間</string>
 </resources>

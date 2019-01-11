@@ -62,7 +62,8 @@
                 android:lineSpacingExtra="8dp"
                 android:padding="10dp"
                 android:text="@string/subtitle_env0"
-                android:textSize="20sp" />
+                android:textColor="#555555"
+                android:textSize="23sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
