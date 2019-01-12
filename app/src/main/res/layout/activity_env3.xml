@@ -26,7 +26,7 @@
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/env1"
+                android:background="@drawable/env3"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax" />
@@ -54,22 +54,29 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="8dp"
                 android:padding="10dp"
-                android:text="@string/body_env0"
+                android:text="@string/body_env3"
                 android:textSize="18sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="8dp"
                 android:padding="10dp"
-                android:text="@string/subtitle_env0"
-                android:textSize="20sp" />
+                android:text="@string/subtitle_env3"
+                android:textColor="#555555"
+                android:textSize="23sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="8dp"
                 android:padding="10dp"
-                android:text="@string/body2_env0"
+                android:text="@string/body2_env3"
                 android:textSize="18sp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:src="@drawable/env3_1"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

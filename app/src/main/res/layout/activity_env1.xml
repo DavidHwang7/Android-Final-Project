@@ -95,7 +95,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:src="@drawable/env1_3"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

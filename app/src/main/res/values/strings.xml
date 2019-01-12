@@ -33,7 +33,7 @@
     <string name="title_env1">主展場</string>
     <string name="title_env2">追火車月台</string>
     <string name="title_env3">多功能教室</string>
-    <string name="title_env4">鐵道小賣店</string>
+    <string name="title_env4">小賣店與閱覽區</string>
     <string name="body_env0">爲爲促進在地藝術茁壯及善用鐵道藝術的空間，鼓勵藝術創作，
         每年公開遴選駐村藝術家，提供藝術家創思空間，讓天馬行空的想像無限延伸。
         將藝術創作傳習出去，讓文化藝術能夠推廣且傳之久遠。
@@ -57,7 +57,17 @@
         運用平面、立體、影音的方式，呈現藝術創意。</string>
     <string name="subtitle2_env1">展覽現場</string>
     <string name="body_env2">為本市唯一能近距離欣賞火車行進的空間，能貼近火車隆隆富節奏的聲響，成為來訪朋友最喜愛的地點。</string>
-    <string name="subtitle2_emv2">鐵道風光</string>
-    <string name="body2_emv2">追火車月台位於鐵道藝術村後方的室外場所，
-        雖然是一個不大的空間</string>
+    <string name="subtitle_env2">鐵道風光</string>
+    <string name="body2_env2">追火車月台位於鐵道藝術村後方的室外場所，
+        左手邊為新竹火車站，右手邊為北新竹火車站，
+        可以看到火車在這兩個火車站之間穿梭。
+        此處亦有數個座位可供遊客乘坐、休息，雖然這是一個不大的空間，
+        但非常適合想要放鬆身心的人去靜靜地坐在那裏。</string>
+    <string name="body_env3">硬體設備配有軌道燈、斗笠燈，以及活動式全鏡面拉門，適合各類型講座、工作坊、藝術活動進行。</string>
+    <string name="subtitle_env3">環境空間</string>
+    <string name="body2_env3">多功能教室提供舒適、寧靜的環境，入內之前必須先脫鞋，空間內亦有抱枕、書櫃等生活雜物。</string>
+    <string name="body_env4">爲不定期更新鐵道文化、地方特色之文創商品販售，並提供各類輕食、飲品，可於免費使用之座椅區休憩享用。
+        坐落大片落地窗邊的親子閱覽區，提供桌椅與書架，讓參觀民眾得以於此處與孩子伴讀，或親手製作藝術村所開發的文創DIY商品。</string>
+    <string name="subtitle_env4">小賣店</string>
+    <string name="subtitle2_env4">親子閱覽區</string>
 </resources>
