@@ -3,8 +3,10 @@ package davidhwang.raiwayvillage
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.widget.ImageButton
-import davidhwang.raiwayvillage.R.styleable.View
+import android.support.v7.app.AlertDialog
+import android.widget.Toast
 
 class Home : AppCompatActivity() {
 
@@ -54,5 +56,26 @@ class Home : AppCompatActivity() {
         intent.setClass(this,
                 Environment::class.java)
         startActivity(intent)
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            val isExit = AlertDialog.Builder(this@Home)
+                isExit.setTitle("貼心小提示")
+                isExit.setMessage("是否退出應用程式?")
+                isExit.setPositiveButton("退出"){
+                    _,_->
+                    finish()
+                }
+                isExit.setNegativeButton("取消"){
+                    _,_->
+                    Toast.makeText(this,"取消退出",Toast.LENGTH_SHORT).show()
+                }
+
+                val dialog: AlertDialog = isExit.create()
+                dialog.show()
+            }
+        return super.onKeyDown(keyCode, event)
+
     }
 }

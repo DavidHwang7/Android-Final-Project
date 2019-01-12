@@ -78,6 +78,7 @@ class Info : AppCompatActivity() {
         val intent = Intent()
         intent.setClass(this,
                 Home::class.java)
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent)
     }
 
@@ -85,6 +86,7 @@ class Info : AppCompatActivity() {
         val uri: Uri = Uri.parse("tel:03-5628933")
         val intent: Intent = Intent()
         intent.setAction(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setData(uri);
         startActivity(intent);
     }
@@ -93,6 +95,7 @@ class Info : AppCompatActivity() {
         val uri: Uri = Uri.parse("geo:24.8041358,120.9769182?q=新竹鐵道藝術村")
         val intent: Intent = Intent()
         intent.setAction(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setData(uri);
         startActivity(intent);
     }
@@ -101,6 +104,7 @@ class Info : AppCompatActivity() {
         val uri: Uri = Uri.parse("https://culture.hccg.gov.tw/ch/home.jsp?id=153&parentpath=0,145")
         val intent: Intent = Intent()
         intent.setAction(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setData(uri);
         startActivity(intent);
     }
