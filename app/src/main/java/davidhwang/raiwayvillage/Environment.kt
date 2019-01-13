@@ -33,7 +33,6 @@ class Environment : AppCompatActivity() {
         arrAdapSpn.setDropDownViewResource(R.layout.spinner_dropdown_item) //自訂getDropDownView()介面格式(Spinner介面展開時，View所使用的每個item格式)
         mSpn.adapter = arrAdapSpn //將宣告好的 Adapter 設定給 Spinner
         mSpn.setSelection(0,true)
-
         mSpn.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 /*Toast.makeText(this@Environment,
@@ -48,19 +47,18 @@ class Environment : AppCompatActivity() {
                     field.setInt(mSpn, AdapterView.INVALID_POSITION)
                 } catch (e: Exception) {
                 }
-
-                if(position==0){
+                mSpn.setSelection(0)
+                if(position==1){
                     access0()
-                }else if(position==1){
-                    access1()
                 }else if(position==2){
-                    access2()
+                    access1()
                 }else if(position==3){
-                    access3()
+                    access2()
                 }else if(position==4){
+                    access3()
+                }else if(position==5){
                     access4()
                 }
-
             }
         }
 
