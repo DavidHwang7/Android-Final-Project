@@ -9,14 +9,12 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.AdapterView
 import android.widget.Toast
-
-
-
-
-
+import java.lang.reflect.Field
 
 
 class Environment : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +33,7 @@ class Environment : AppCompatActivity() {
         arrAdapSpn.setDropDownViewResource(R.layout.spinner_dropdown_item) //自訂getDropDownView()介面格式(Spinner介面展開時，View所使用的每個item格式)
         mSpn.adapter = arrAdapSpn //將宣告好的 Adapter 設定給 Spinner
         mSpn.setSelection(0,true)
+
         mSpn.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 /*Toast.makeText(this@Environment,
@@ -43,6 +42,13 @@ class Environment : AppCompatActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                try {
+                    val field : Field = javaClass.getDeclaredField("mOldSelectedPosition")
+                    field.isAccessible = true
+                    field.setInt(mSpn, AdapterView.INVALID_POSITION)
+                } catch (e: Exception) {
+                }
+
                 if(position==0){
                     access0()
                 }else if(position==1){
@@ -54,6 +60,7 @@ class Environment : AppCompatActivity() {
                 }else if(position==4){
                     access4()
                 }
+
             }
         }
 

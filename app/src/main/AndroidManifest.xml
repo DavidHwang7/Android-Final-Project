@@ -58,6 +58,7 @@
             android:name=".env4"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>
