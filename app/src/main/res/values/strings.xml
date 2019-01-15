@@ -22,6 +22,8 @@
         【自小客車】\n請將車輛停放於東大高架陸橋下停車場或轉運站附近停車場。</string>
     <string name="more_info">更多資訊</string>
     <string name="more"><u>新竹市文化局-鐵道藝術村</u></string>
+    <string name="dis_info">目前距離</string>
+    <string name="dis"></string>
     <string name="title_env">館內介紹</string>
     <string name="opening_env">探索鐵道藝術村</string>
     <string name="select_region_dialog_title">選擇您想探索的目的地</string>
