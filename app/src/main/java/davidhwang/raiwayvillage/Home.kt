@@ -1,8 +1,15 @@
 package davidhwang.raiwayvillage
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.view.KeyEvent
 import android.widget.ImageButton
 import android.support.v7.app.AlertDialog
@@ -22,11 +29,11 @@ class Home : AppCompatActivity() {
             setContentView(R.layout.activity_home_fhd)
 
         val intro_button: ImageButton = findViewById(R.id.intro_button)
-        val camera_button: ImageButton = findViewById(R.id.camera_button)
+        val frame_button: ImageButton = findViewById(R.id.camera_button)
         val info_button: ImageButton = findViewById(R.id.info_button)
         val history_button: ImageButton = findViewById(R.id.history_button)
 
-        camera_button.setOnTouchListener(ButtonTouchLight())
+        frame_button.setOnTouchListener(ButtonTouchLight())
         intro_button.setOnTouchListener(ButtonTouchDark())
         info_button.setOnTouchListener(ButtonTouchDark())
         history_button.setOnTouchListener(ButtonTouchLight())
@@ -34,6 +41,7 @@ class Home : AppCompatActivity() {
         info_button.setOnClickListener { accessInfo() }
         history_button.setOnClickListener { accessHistory() }
         intro_button.setOnClickListener { accessEnv() }
+        frame_button.setOnClickListener{accessFrame()}
 
     }
 
@@ -58,6 +66,27 @@ class Home : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun accessFrame() {
+
+        val intent = Intent()
+        intent.setClass(this,
+                Frame::class.java)
+        startActivity(intent)
+    }
+
+
+
+    override fun onActivityResult(requestCode: Int, resultCode:Int,
+                                  data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (data == null) return
+        if (requestCode != 1) return
+
+        val bm = data.extras.get("data") as Bitmap
+        //iv.setImageBitmap(bm)
+    }
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if(keyCode == KeyEvent.KEYCODE_BACK){
             val isExit = AlertDialog.Builder(this@Home)
@@ -66,7 +95,7 @@ class Home : AppCompatActivity() {
                 isExit.setPositiveButton("退出"){
                     _,_->
                     finish()
-                }
+                }//FF4081
                 isExit.setNegativeButton("取消"){
                     _,_->
                     Toast.makeText(this,"取消退出",Toast.LENGTH_SHORT).show()
