@@ -1,12 +1,12 @@
-package davidhwang.raiwayvillage
+package davidhwang.railwayvillage
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-class env4 : AppCompatActivity() {
+class env2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_env4)
+        setContentView(R.layout.activity_env2)
     }
 }

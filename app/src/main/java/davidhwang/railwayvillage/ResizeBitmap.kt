@@ -1,4 +1,4 @@
-package davidhwang.raiwayvillage
+package davidhwang.railwayvillage
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -7,9 +7,9 @@ import android.graphics.Matrix
 import android.util.Log
 
 
-public fun getResizedBitmap(imagePath: String): Bitmap {
-    val MAX_WIDTH = 1024 // 新圖的寬要小於等於這個值
-
+public fun getResizedBitmap(imagePath: String, maxWidth: Int, maxHeight: Int): Bitmap {
+    val MAX_WIDTH = maxWidth // 新圖的寬要小於等於這個值
+    val MAX_HEIGHT = maxHeight
     val options = BitmapFactory.Options()
     options.inJustDecodeBounds = true //只讀取寬度和高度
     BitmapFactory.decodeFile(imagePath, options)
@@ -18,7 +18,7 @@ public fun getResizedBitmap(imagePath: String): Bitmap {
 
     // 求出要縮小的 scale 值，必需是2的次方，ex: 1,2,4,8,16...
     var scale = 1
-    while (width > MAX_WIDTH * 2) {
+    while (width > MAX_WIDTH * 2 || height > MAX_HEIGHT * 2) {
         width /= 2
         height /= 2
         scale *= 2
@@ -30,8 +30,11 @@ public fun getResizedBitmap(imagePath: String): Bitmap {
     val scaledBitmap = BitmapFactory.decodeFile(imagePath, scaledOptions)
 
     var resize = 1f //縮小值 resize 可為任意小數
-    if (width > MAX_WIDTH) {
+    if (width > MAX_WIDTH ) {
         resize = MAX_WIDTH.toFloat() / width
+    }
+    if (height > MAX_HEIGHT ) {
+        resize = MAX_HEIGHT.toFloat() / height
     }
 
     val matrix = Matrix() // 產生縮圖需要的參數 matrix

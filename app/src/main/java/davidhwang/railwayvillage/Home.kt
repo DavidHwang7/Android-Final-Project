@@ -1,4 +1,4 @@
-package davidhwang.raiwayvillage
+package davidhwang.railwayvillage
 
 import android.Manifest
 import android.content.Intent
@@ -74,18 +74,6 @@ class Home : AppCompatActivity() {
         startActivity(intent)
     }
 
-
-
-    override fun onActivityResult(requestCode: Int, resultCode:Int,
-                                  data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (data == null) return
-        if (requestCode != 1) return
-
-        val bm = data.extras.get("data") as Bitmap
-        //iv.setImageBitmap(bm)
-    }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if(keyCode == KeyEvent.KEYCODE_BACK){

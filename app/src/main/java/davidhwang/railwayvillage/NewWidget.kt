@@ -1,4 +1,4 @@
-package davidhwang.raiwayvillage
+package davidhwang.railwayvillage
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager

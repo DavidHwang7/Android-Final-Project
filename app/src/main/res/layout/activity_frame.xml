@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageButton
-                android:id="@+id/back_info"
+                android:id="@+id/back_frame"
                 android:layout_width="43dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
@@ -40,13 +40,13 @@
         android:text="快幫相片加上特色鐵路相框吧=)"
         android:textSize="20sp"
         android:textColor="#22AAAA"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:src="@drawable/frame_example"
-        android:layout_marginTop="3dp"/>
+        android:src="@drawable/frame_example" />
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -57,8 +57,8 @@
         >
         <Button
             android:id="@+id/camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:layout_margin="15dp"
             android:background="@drawable/button_oval"
             android:text="開啟相機"
@@ -67,8 +67,8 @@
 
         <Button
             android:id="@+id/gallery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:layout_margin="15dp"
             android:background="@drawable/button_oval"
             android:text="取自相簿"

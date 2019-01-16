@@ -1,4 +1,4 @@
-package davidhwang.raiwayvillage
+package davidhwang.railwayvillage
 
 import android.content.Intent
 import android.content.pm.PackageManager
