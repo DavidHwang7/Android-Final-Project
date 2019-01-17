@@ -9,111 +9,125 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:background="#22AAAA"
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageButton
-                android:id="@+id/back_frame_edit"
-                android:layout_width="43dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/home_icon"
-                android:src="@android:color/transparent" />
+            android:orientation="vertical">
             <TextView
-                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/title_frame"
+                android:layout_gravity="center_horizontal"
+                android:text="請選擇喜歡的款式"
                 android:textSize="25sp"
                 android:textColor="#FFFFFF"
                 android:gravity="center"/>
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
-    <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-        >
-        <TextView
-            android:id="@+id/tv"
-            android:layout_alignParentTop="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="請選擇喜歡的款式"
-            android:textSize="20sp"
-            android:textColor="#22AAAA"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp" />
 
-        <LinearLayout
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="#EEEEDD"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_below="@id/tv"
+            android:id="@+id/show_area"
             android:layout_above="@id/L1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:orientation="vertical"
+            android:background="#EEEEDD"
             >
             <ImageView
                 android:id="@+id/frame_image"
-                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:src="@drawable/frame_example"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/L1"
-            android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:background="#BBBBBB"
+            android:layout_above="@id/save"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/black"
+            <ImageButton
+                android:id="@+id/black_solid"
                 android:layout_weight="1"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/button_oval"
-                android:text="黑"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp" />
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/frame_thumbnail1"
+                android:src="@android:color/transparent" />
 
-            <Button
-                android:id="@+id/white"
+            <ImageButton
+                android:id="@+id/black_dot"
                 android:layout_weight="1"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/button_oval"
-                android:text="白"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp" />
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/frame_thumbnail2"
+                android:src="@android:color/transparent" />
 
-            <Button
-                android:id="@+id/save"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+            <ImageButton
+                android:id="@+id/white_solid"
                 android:layout_weight="1"
-                android:background="@drawable/button_oval"
-                android:text="儲存"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp" />
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/frame_thumbnail3"
+                android:src="@android:color/transparent" />
+
+            <ImageButton
+                android:id="@+id/white_dot"
+                android:layout_weight="1"
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/frame_thumbnail4"
+                android:src="@android:color/transparent" />
+
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="74dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="84dp"
+            android:layout_marginTop="3dp"
+            android:background="#00AAAA"
+            android:text="取消"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="74dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="84dp"
+            android:layout_marginTop="3dp"
+            android:background="#00AAAA"
+            android:text="儲存"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
 
     </RelativeLayout>
+
 
 </LinearLayout>

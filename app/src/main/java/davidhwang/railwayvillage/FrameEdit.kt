@@ -7,21 +7,31 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.opengl.ETC1.getHeight
 import android.opengl.ETC1.getWidth
-import android.graphics.BitmapFactory
-import android.graphics.Bitmap
 import android.content.ContentResolver
+import android.graphics.*
+import android.support.v7.app.AlertDialog
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
+import android.view.KeyEvent
+import android.view.View
 import android.view.ViewGroup
-
-
+import android.widget.*
+import android.view.View.MeasureSpec
+import android.view.View.MeasureSpec.UNSPECIFIED
+import android.view.View.MeasureSpec.makeMeasureSpec
+import java.io.*
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
 
 
 class FrameEdit : AppCompatActivity() {
 
     lateinit var ProcessImage: ImageView
+    lateinit var image_bmp: Bitmap
+    lateinit var montage_bmp:Bitmap
+    lateinit var FROM:String
+    lateinit var path:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,76 +40,181 @@ class FrameEdit : AppCompatActivity() {
         val mWidth = resources.displayMetrics.widthPixels //手機的寬度(像素)
         val mHeight = resources.displayMetrics.heightPixels //手機的高度(像素)
 
+        val show_area : RelativeLayout= findViewById(R.id.show_area)
+        val spec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        show_area.measure(spec, spec)
+        val show_area_height = show_area.getMeasuredHeight();
+
         val intent= getIntent()
-        val path = intent.getStringExtra("URI")
-        val bmp=getResizedBitmap(path,mWidth,mHeight*2/5 as Int)
-
+        path = intent.getStringExtra("URI")
+        FROM=intent.getStringExtra("FROM")
+        image_bmp=getResizedBitmap(path,mWidth,show_area_height as Int)
         ProcessImage=findViewById(R.id.frame_image)
-        ProcessImage.setImageBitmap(bmp)
+        applyFrame(2,1)
 
-        val home: ImageButton = findViewById(R.id.back_frame_edit)
-        home.setOnTouchListener(ButtonTouchDark())
-        home.setOnClickListener(android.view.View.OnClickListener() { accessHome()})
+        val cancel: Button = findViewById(R.id.cancel)
+        cancel.setOnTouchListener(ButtonTouchDark())
+        cancel.setOnClickListener(android.view.View.OnClickListener() { cancel()})
 
-        val black_button: Button =findViewById(R.id.black)
-        black_button.setOnTouchListener(ButtonTouchDark())
-        val lp1 = black_button.getLayoutParams()
-        lp1.height=lp1.width
-        black_button.setLayoutParams(lp1)
+        val black_solid_button: ImageButton =findViewById(R.id.black_solid)
+        black_solid_button.setOnTouchListener(ButtonTouchLight())
+        black_solid_button.setOnClickListener{applyFrame(1,1)}
 
-        val white_button: Button =findViewById(R.id.white)
-        white_button.setOnTouchListener(ButtonTouchDark())
-        val lp2 = white_button.getLayoutParams()
-        lp2.height=lp2.width
-        white_button.setLayoutParams(lp2)
+        val black_dot_button: ImageButton =findViewById(R.id.black_dot)
+        black_dot_button.setOnTouchListener(ButtonTouchLight())
+        black_dot_button.setOnClickListener{applyFrame(1,2)}
+
+        val white_solid_button: ImageButton =findViewById(R.id.white_solid)
+        white_solid_button.setOnTouchListener(ButtonTouchDark())
+        white_solid_button.setOnClickListener{applyFrame(2,1)}
+
+        val white_dot_button: ImageButton =findViewById(R.id.white_dot)
+        white_dot_button.setOnTouchListener(ButtonTouchDark())
+        white_dot_button.setOnClickListener{applyFrame(2,2)}
 
         val save_button: Button =findViewById(R.id.save)
         save_button.setOnTouchListener(ButtonTouchDark())
-        val lp3 = save_button.getLayoutParams()
-        lp3.height=lp3.width
-        save_button.setLayoutParams(lp3)
+        save_button.setOnClickListener{save(path)}
+
+    }
+
+    private fun applyFrame(color:Int,type:Int){
+        lateinit var select_frame:Bitmap
+        if(color==1){
+            if(type==1) {
+                if(image_bmp.width>image_bmp.height&&image_bmp.width/image_bmp.height>=4/3){
+                    select_frame= getResizedBitmapFromDrawable(R.drawable.frame_black,this)
+                } else{
+                    select_frame= getResizedBitmapFromDrawable(R.drawable.frame_black_portrait_solid,this)
+                }
+            } else if(type==2){
+                if(image_bmp.width>image_bmp.height&&image_bmp.width/image_bmp.height>=4/3){
+                    select_frame= getResizedBitmapFromDrawable(R.drawable.frame_black_dot,this)
+                } else{
+                    select_frame= getResizedBitmapFromDrawable(R.drawable.frame_black_portrait_dot,this)
+                }
+            }
+        }else if(color==2){
+            if(type==1) {
+                if(image_bmp.width>image_bmp.height&&image_bmp.width/image_bmp.height>=4/3){
+                    select_frame= getResizedBitmapFromDrawable(R.drawable.frame_white,this)
+                } else{
+                    select_frame= getResizedBitmapFromDrawable(R.drawable.frame_white_portrait_solid,this)
+                }
+            } else if(type==2){
+                if(image_bmp.width>image_bmp.height&&image_bmp.width/image_bmp.height>=4/3){
+                    select_frame= getResizedBitmapFromDrawable(R.drawable.frame_white_dot,this)
+                } else{
+                    select_frame= getResizedBitmapFromDrawable(R.drawable.frame_white_portrait_dot,this)
+                }
+            }
+        }
+        montage_bmp=montageBitmap(select_frame,image_bmp,0f,0f)
+        ProcessImage.setImageBitmap(montage_bmp)
+    }
 
 
-        black_button.setOnClickListener{applyBlack()}
-        white_button.setOnClickListener{applyWhite()}
-        save_button.setOnClickListener{save()}
-        //val day: Int = intent.getIntExtra(SetBirthdayActivity.KEY_DAY, 1)
-        /*val cr = this.contentResolver
+    /*将像框和图片进行融合，返回一个Bitmap*/
+    private fun montageBitmap(frame: Bitmap, src: Bitmap, x: Float, y: Float): Bitmap {
 
+        val w = src.width
+        val h = src.height
+        val sizeFrame = Bitmap.createScaledBitmap(frame, w, h, true)
+
+        val newBM = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(newBM)
+        val mBitPaint = Paint(Paint.ANTI_ALIAS_FLAG);
+        mBitPaint.setFilterBitmap(true);
+        mBitPaint.setDither(true);
+        canvas.drawBitmap(src, x , y , null)
+        canvas.drawBitmap(sizeFrame, 0f , 0f , null)
+        return newBM
+    }
+
+
+    private fun save(path:String){
         try {
-            //讀取照片，型態為Bitmap
-            val bmp=getResizedBitmap(uri)
-            val bitmap = BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(uri)))
+            val dir = File(path)
+            if (!dir.exists()) {
+                dir.mkdir()
+            }
+            val fOut = FileOutputStream(path)
+            montage_bmp.compress(Bitmap.CompressFormat.JPEG, 100, fOut)
 
-            //判斷照片為橫向或者為直向，並進入ScalePic判斷圖片是否要進行縮放
-            if (bitmap.width > bitmap.height)
-                ScalePic(bitmap,
-                        mPhone.heightPixels)
-            else
-                ScalePic(bitmap, mPhone.widthPixels)
+            try {
+                fOut.flush()
+                fOut.close()
+                Toast.makeText(this,"儲存成功",Toast.LENGTH_SHORT).show()
+                val intent=Intent()
+                intent.setClass(this,Frame::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
         } catch (e: FileNotFoundException) {
-        }*/
+            e.printStackTrace()
+        }
     }
 
-    private fun applyBlack(){
+    private fun cancel(){
+        val isExit = AlertDialog.Builder(this)
+        isExit.setTitle("貼心小提示")
+        isExit.setMessage("檔案將不會保留\n是否確定離開編輯畫面?")
+        isExit.setPositiveButton("離開"){
+            _,_->
+            if(FROM=="Camera"){
+                val file = File(path)
+                file.delete()
+            }
+            val intent = Intent()
+            intent.setClass(this,
+                    Frame::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent)
 
+        }
+        isExit.setNegativeButton("取消"){
+            _,_->
+        }
+
+        val dialog: AlertDialog = isExit.create()
+        dialog.show()
     }
 
-    private fun applyWhite(){
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            val isExit = AlertDialog.Builder(this)
+            isExit.setTitle("貼心小提示")
+            isExit.setMessage("檔案將不會保留\n是否確定離開編輯畫面?")
+            isExit.setPositiveButton("離開"){
+                _,_->
+                if(FROM=="Camera"){
+                    val file = File(path)
+                    file.delete()
+                }
+                val intent = Intent()
+                intent.setClass(this,
+                        Frame::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent)
+            }
+            isExit.setNegativeButton("取消"){
+                _,_->
+            }
+
+            val dialog: AlertDialog = isExit.create()
+            dialog.show()
+        }
+        return super.onKeyDown(keyCode, event)
 
     }
-
-    private fun save(){
-
-
-    }
-
-    private fun accessHome(){
-        val intent = Intent()
-        intent.setClass(this,
-                Home::class.java)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent)
+    override fun onStop(){
+        super.onStop()
+        montage_bmp.recycle()
+        image_bmp.recycle()
+        ProcessImage.setImageBitmap(null)
     }
 
 }

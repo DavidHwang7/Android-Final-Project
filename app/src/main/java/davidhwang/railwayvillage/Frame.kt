@@ -28,13 +28,12 @@ import android.net.Uri
 import android.os.Build
 import android.support.v4.content.FileProvider
 import android.app.Activity
-
-
+import android.support.v7.app.AlertDialog
+import android.view.KeyEvent
 
 
 class Frame : AppCompatActivity() {
 
-    lateinit var saveUri: Uri  //外部定義變數
     lateinit var savePath: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,10 +75,8 @@ class Frame : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { //如果在Android7.0以上,使用FileProvider獲取Uri
                 cameraIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
                 val uriForCamera = FileProvider.getUriForFile(this, "davidhwang.railwayvillage", tmpFile)
-                //saveUri = uriForCamera//將 Uri 存進變數供後續 onActivityResult 使用
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriForCamera)
             }else{
-                //saveUri = Uri.fromFile(tmpFile)
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tmpFile))
             }
             startActivityForResult(cameraIntent, 2)
@@ -103,14 +100,22 @@ class Frame : AppCompatActivity() {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { //如果在Android7.0以上,使用FileProvider獲取Uri
                         cameraIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
                         val uriForCamera = FileProvider.getUriForFile(this, "davidhwang.railwayvillage", tmpFile)
-                        //saveUri = uriForCamera//將 Uri 存進變數供後續 onActivityResult 使用
                         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriForCamera)
                     }else{
-                        //saveUri = Uri.fromFile(tmpFile)
                         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tmpFile))
                     }
 
                     startActivityForResult(cameraIntent, 2)
+
+                } else { }
+            4-> if (grantResults.isNotEmpty() &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                    grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+
+                    val intent = Intent()
+                    intent.setType("image/*")//開啟Pictures畫面Type設定為image
+                    intent.setAction(Intent.ACTION_GET_CONTENT)//使用Intent.ACTION_GET_CONTENT這個Action
+                    startActivityForResult(intent, 3)//取得照片後返回此畫面
 
                 } else { }
         }
@@ -123,33 +128,12 @@ class Frame : AppCompatActivity() {
 
         if (requestCode == 2) {
             if (resultCode == RESULT_OK) {
-                /*val bmp = data.extras.get("data") as Bitmap
-                val imgdir = Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES)
-                val fOut: FileOutputStream
-                val tmp = imgdir.toString() + "/tmp.jpg"
-                try {
-                    val dir = File(imgdir.toString())
-                    if (!dir.exists()) {
-                        dir.mkdir()
-                    }
-
-                    fOut = FileOutputStream(tmp)
-                    bmp.compress(Bitmap.CompressFormat.JPEG, 100, fOut)
-
-                    try {
-                        fOut.flush()
-                        fOut.close()
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-
-                } catch (e: FileNotFoundException) {
-                    e.printStackTrace()
-                }*/
                 val intent = Intent()
                 intent.setClass(this, FrameEdit::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Log.i("URI", "uri_camera : " + savePath)
                 intent.putExtra("URI", savePath)
+                intent.putExtra("FROM","Camera")//分辨Camera還是Gallery
                 startActivity(intent)
             }
         }
@@ -157,11 +141,13 @@ class Frame : AppCompatActivity() {
             if (resultCode == RESULT_OK) {
                 val uri = data!!.data
                 //val path=getRealPathFromUri(this,uri)
-                val path1=pick_image.getPath(this,uri)
-                Log.i("URI", "uri_gallery : " + path1)
+                val path=pick_image.getPath(this,uri)
+                Log.i("URI", "uri_gallery : " + path)
                 val intent = Intent()
                 intent.setClass(this, FrameEdit::class.java)
-                intent.putExtra("URI", path1)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("URI", path)
+                intent.putExtra("FROM","Gallery")//分辨Camera還是Gallery
                 startActivity(intent)
             }
         }
@@ -176,13 +162,21 @@ class Frame : AppCompatActivity() {
     }
 
     private fun accessGallery() {
-        val intent = Intent()
-        //開啟Pictures畫面Type設定為image
-        intent.setType("image/*")
-        //使用Intent.ACTION_GET_CONTENT這個Action
-        intent.setAction(Intent.ACTION_GET_CONTENT)
-        //取得照片後返回此畫面
-        startActivityForResult(intent, 3)
+        if (ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                ||ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE),
+                    4)
+        }
+        else {
+            val intent = Intent()
+            intent.setType("image/*")//開啟Pictures畫面Type設定為image
+            intent.setAction(Intent.ACTION_GET_CONTENT)//使用Intent.ACTION_GET_CONTENT這個Action
+            startActivityForResult(intent, 3)//取得照片後返回此畫面
+        }
     }
 
     private fun accessHome(){
@@ -191,5 +185,16 @@ class Frame : AppCompatActivity() {
                 Home::class.java)
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent)
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            val intent = Intent()
+            intent.setClass(this,
+                    Home::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent)
+        }
+        return super.onKeyDown(keyCode, event)
     }
 }
