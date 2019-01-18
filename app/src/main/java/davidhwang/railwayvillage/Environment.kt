@@ -65,11 +65,7 @@ class Environment : AppCompatActivity() {
     }
 
     private fun accessHome(){
-        val intent = Intent()
-        intent.setClass(this,
-                Home::class.java)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent)
+        finish()
     }
 
     private fun access0(){

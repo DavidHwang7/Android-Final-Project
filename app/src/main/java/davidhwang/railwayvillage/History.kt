@@ -1,5 +1,7 @@
 package davidhwang.railwayvillage
 
+import android.accessibilityservice.AccessibilityService
+import android.app.Instrumentation
 import android.content.ContentResolver
 import android.content.Intent
 import android.content.res.Resources
@@ -10,6 +12,9 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.util.Log
+import android.view.KeyEvent
+import android.view.View
 
 
 class History : AppCompatActivity() {
@@ -44,11 +49,7 @@ class History : AppCompatActivity() {
     }
 
     private fun accessHome(){
-        val intent = Intent()
-        intent.setClass(this,
-                Home::class.java)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent)
+        finish()
     }
 
 }

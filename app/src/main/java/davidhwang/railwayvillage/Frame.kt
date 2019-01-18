@@ -180,21 +180,6 @@ class Frame : AppCompatActivity() {
     }
 
     private fun accessHome(){
-        val intent = Intent()
-        intent.setClass(this,
-                Home::class.java)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent)
-    }
-
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if(keyCode == KeyEvent.KEYCODE_BACK) {
-            val intent = Intent()
-            intent.setClass(this,
-                    Home::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent)
-        }
-        return super.onKeyDown(keyCode, event)
+        finish()
     }
 }
