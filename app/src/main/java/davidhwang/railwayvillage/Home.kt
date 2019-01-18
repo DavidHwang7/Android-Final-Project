@@ -33,6 +33,7 @@ class Home : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar!!.hide() //#303F9FDark  //#3F51B5Primary
         super.onCreate(savedInstanceState)
+
         val mWidth = resources.displayMetrics.widthPixels //手機的寬度(像素)
         val mHeight = resources.displayMetrics.heightPixels //手機的高度(像素)
         if(mWidth<=320&&mHeight<=480)
@@ -104,9 +105,16 @@ class Home : AppCompatActivity() {
                 SensorManager.SENSOR_DELAY_UI)
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        mplayer?.start()
+    }
+
     override fun onStop() {
         super.onStop()
         smgr.unregisterListener(listener, slist[0])
+        mplayer?.stop()
+        mplayer?.prepare()
     }
     var X_pos_pre: Boolean = true
     var X_neg_pre: Boolean = true
@@ -116,15 +124,23 @@ class Home : AppCompatActivity() {
 
             var X_pos: Boolean = (event.values[0]>7.81)&&(event.values[0]<11.81)
             var X_neg: Boolean = (event.values[0]>-11.81)&&(event.values[0]<-7.81)
-            if(X_pos&&!X_pos_pre) {
+            var isP: Boolean = false
 
+            if(mplayer?.isPlaying==null)
+                return
+            if(mplayer?.isPlaying==true)
+                isP=true
+            else if(mplayer?.isPlaying==false)
+                isP=false
+
+            if(!isP&&X_pos&&!X_pos_pre) {
                 try {
                     mplayer?.start()
                     Toast.makeText(this@Home, "背景音樂開啟", Toast.LENGTH_SHORT).show()
                 } catch (e: Exception) {
                 }
             }
-            else if(X_neg&&!X_neg_pre) {
+            else if(isP&&X_neg&&!X_neg_pre) {
 
                 try {
                     mplayer?.pause()
@@ -183,7 +199,7 @@ class Home : AppCompatActivity() {
                 isExit.setPositiveButton("退出"){
                     _,_->
                     finish()
-                }//FF4081
+                }
                 isExit.setNegativeButton("取消"){
                     _,_->
                     Toast.makeText(this@Home,"取消退出",Toast.LENGTH_SHORT).show()
@@ -191,8 +207,7 @@ class Home : AppCompatActivity() {
 
                 val dialog: AlertDialog = isExit.create()
                 dialog.show()
-            }
+        }
         return super.onKeyDown(keyCode, event)
-
     }
 }
