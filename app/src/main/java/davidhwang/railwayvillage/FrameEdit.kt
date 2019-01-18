@@ -114,7 +114,6 @@ class FrameEdit : AppCompatActivity() {
     }
 
 
-    /*将像框和图片进行融合，返回一个Bitmap*/
     private fun montageBitmap(frame: Bitmap, src: Bitmap, x: Float, y: Float): Bitmap {
 
         val w = src.width
@@ -210,11 +209,6 @@ class FrameEdit : AppCompatActivity() {
         return super.onKeyDown(keyCode, event)
 
     }
-    override fun onStop(){
-        super.onStop()
-        montage_bmp.recycle()
-        image_bmp.recycle()
-        ProcessImage.setImageBitmap(null)
-    }
+
 
 }
