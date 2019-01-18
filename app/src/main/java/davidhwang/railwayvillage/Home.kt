@@ -74,7 +74,7 @@ class Home : AppCompatActivity() {
         if (slist.size == 0) {
 
             notice.setTitle("貼心小提示")
-            notice.setMessage("您的手機沒有加速度感測器用以控制背景音樂的開關，是否線再關閉背景音樂?")
+            notice.setMessage("您的手機沒有加速度感測器用以控制背景音樂的開關，是否現在關閉背景音樂?")
             notice.setPositiveButton("是"){
                 _,_->
                 mplayer?.stop()
@@ -85,7 +85,7 @@ class Home : AppCompatActivity() {
             }
         }else{
             notice.setTitle("貼心小提示")
-            notice.setMessage("手機向右傾倒可關閉音樂，\n向左傾倒可再開啟音樂")
+            notice.setMessage("手機向右傾倒可關閉音樂，\n向左傾倒可再開啟音樂。")
             notice.setPositiveButton("我知道了"){
                 _,_->
                 ;
