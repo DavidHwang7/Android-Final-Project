@@ -63,39 +63,40 @@ class Home : AppCompatActivity() {
             mplayer = MediaPlayer.create(this, R.raw.music);
             mplayer?.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mplayer?.setLooping(true);
+            mplayer?.start()
+
+            smgr = getSystemService(SENSOR_SERVICE) as SensorManager
+
+            slist = smgr.getSensorList(Sensor.TYPE_ACCELEROMETER)
+            val notice = AlertDialog.Builder(this@Home)
+            if (slist.size == 0) {
+
+                notice.setTitle("貼心小提示")
+                notice.setMessage("您的手機沒有加速度感測器用以控制背景音樂的開關，是否現在關閉背景音樂?")
+                notice.setPositiveButton("是"){
+                    _,_->
+                    mplayer?.stop()
+                }
+                notice.setNegativeButton("否"){
+                    _,_->
+                    ;
+                }
+            }else{
+                notice.setTitle("貼心小提示")
+                notice.setMessage("手機向右傾倒可關閉背景音樂，\n向左傾倒可再開啟背景音樂。")
+                notice.setPositiveButton("我知道了"){
+                    _,_->
+                    ;
+                }
+            }
+
+
+            val dialog: AlertDialog = notice.create()
+            dialog.show()
 
         }catch (e:IllegalStateException) {
             e.printStackTrace();
         }
-        mplayer?.start()
-        smgr = getSystemService(SENSOR_SERVICE) as SensorManager
-
-        slist = smgr.getSensorList(Sensor.TYPE_ACCELEROMETER)
-        val notice = AlertDialog.Builder(this@Home)
-        if (slist.size == 0) {
-
-            notice.setTitle("貼心小提示")
-            notice.setMessage("您的手機沒有加速度感測器用以控制背景音樂的開關，是否現在關閉背景音樂?")
-            notice.setPositiveButton("是"){
-                _,_->
-                mplayer?.stop()
-            }
-            notice.setNegativeButton("否"){
-                _,_->
-                ;
-            }
-        }else{
-            notice.setTitle("貼心小提示")
-            notice.setMessage("手機向右傾倒可關閉音樂，\n向左傾倒可再開啟音樂。")
-            notice.setPositiveButton("我知道了"){
-                _,_->
-                ;
-            }
-        }
-
-
-        val dialog: AlertDialog = notice.create()
-        dialog.show()
 
     }
 
@@ -158,6 +159,7 @@ class Home : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        mplayer?.stop()
         mplayer?.release()
     }
 
